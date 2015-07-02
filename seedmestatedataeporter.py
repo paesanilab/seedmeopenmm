@@ -1,7 +1,7 @@
 """
 seedmerepoter.py: Outputs data about a simulation to seedme
 
-This is a adaption of the OpenMM molecular simulation tool statedatareporter.py
+This is a adaptation of the OpenMM molecular simulation tool statedatareporter.py
 """
 
 __author__ = "Sebastian Amara"
