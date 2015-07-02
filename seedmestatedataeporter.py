@@ -14,9 +14,9 @@ import time
 import seedme # import the seedme module
 
 class SeedMeStateDataReporter(object):
-    """SeedMeReporter outputs information about a simulation, such as energy and temperature, to a new SeedMe collection.
+    """SeedMeStateDataReporter outputs information about a simulation, such as energy and temperature, to a new SeedMe collection.
 
-    To use it, create a SeedMeReporter, then add it to the Simulation's list of reporters.  The set of
+    To use it, create a SeedMeStateDataReporter, then add it to the Simulation's list of reporters.  The set of
     data to write is configurable using boolean flags passed to the constructor.  By default the data is
     written in comma-separated-value (CSV) format, but you can specify a different separator to use.
     """
