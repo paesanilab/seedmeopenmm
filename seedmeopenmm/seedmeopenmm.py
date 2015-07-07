@@ -22,7 +22,7 @@ class SeedMeStateDataReporter(object):
     """
 
     def __init__(self, collection, reportInterval, step=False, time=False, potentialEnergy=False, kineticEnergy=False, totalEnergy=False, temperature=False, volume=False, density=False,
-                 progress=False, remainingTime=False, speed=False, separator=',', systemMass=None, totalSteps=None):
+                 progress=False, remainingTime=False, speed=False, separator=',', systemMass=None, totalSteps=None, iserror=False):
         """Create a SeedMeReporter.
 
         Parameters:
@@ -51,17 +51,17 @@ class SeedMeStateDataReporter(object):
            indicate 100% completion.
         """
         self._reportInterval = reportInterval
-        
-        self._obj = seedme.SeedMe()
-        self._obj.set_log_level('ERROR')
-        result = self._obj.create_collection(title=collection)
-        
-        self._my_cid = self._obj.get_id(result)
-        if not self._my_cid:
-            print("Abort: Collection id not found in: " + result)
-            exit(1)
-        url = self._obj.get_url(result)
-        print("Collection url is: " + url)  
+        try:
+            self._obj = seedme.SeedMe()
+            self._obj.set_log_level('ERROR')
+            result = self._obj.create_collection(title=collection)
+            self._my_cid = self._obj.get_id(result)         
+            url = self._obj.get_url(result)
+            print("Collection url is: " + url)
+        except:
+            self._iserror = True
+            #print ('Error in SeedMe API:')
+
                
         if (progress or remainingTime) and totalSteps is None:
             raise ValueError('Reporting progress or remaining time requires total steps to be specified')
@@ -105,24 +105,29 @@ class SeedMeStateDataReporter(object):
          - simulation (Simulation) The Simulation to generate a report for
          - state (State) The current state of the simulation
         """
-        if not self._hasInitialized:
-            self._initializeConstants(simulation)
-            headers = self._constructHeaders()
-            self._obj.add_ticker(self._my_cid, '#"%s"' % ('"'+self._separator+'"').join(headers))
-          
-            self._initialClockTime = time.time()
-            self._initialSimulationTime = state.getTime()
-            self._initialSteps = simulation.currentStep
-            self._hasInitialized = True
+        if not self._iserror:
+            if not self._hasInitialized:
+                self._initializeConstants(simulation)
+                headers = self._constructHeaders()
+                self._obj.add_ticker(self._my_cid, '#"%s"' % ('"'+self._separator+'"').join(headers))
 
-        # Check for errors.
-        self._checkForErrors(simulation, state)
+                self._initialClockTime = time.time()
+                self._initialSimulationTime = state.getTime()
+                self._initialSteps = simulation.currentStep
+                self._hasInitialized = True
 
-        # Query for the values
-        values = self._constructReportValues(simulation, state)
+            # Check for errors.
+            self._checkForErrors(simulation, state)
 
-        # Write the values.
-        self._obj.add_ticker(self._my_cid, self._separator.join(str(v) for v in values))
+            # Query for the values
+            values = self._constructReportValues(simulation, state)
+
+            # Write the values.
+            try:
+                self._obj.add_ticker(self._my_cid, self._separator.join(str(v) for v in values))
+            except: 
+                pass
+                #print ('Error in SeedMe API:')
 
     def _constructReportValues(self, simulation, state):
         """Query the simulation for the current state of our observables of interest.
