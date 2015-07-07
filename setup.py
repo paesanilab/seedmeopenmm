@@ -26,7 +26,7 @@ test_requirements = [
 
 setup(
     name='seedmeopenmm',
-    version='0.1.2',
+    version='0.1.3',
     description="seedmeopenmm contains a stated data reporter that connects post Openmm simulation results to SeedMe",
     long_description=readme + '\n\n' + history,
     author="Sebastian Amara",

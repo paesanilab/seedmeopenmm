@@ -9,9 +9,8 @@ from simtk.openmm import app
 import simtk.openmm as mm
 from simtk import unit
 from sys import stdout
+
 from seedmeopenmm import SeedMeStateDataReporter
-
-
 
 pdb = app.PDBFile('input.pdb')
 forcefield = app.ForceField('amber96.xml', 'spce.xml')

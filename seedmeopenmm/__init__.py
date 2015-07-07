@@ -4,4 +4,4 @@ __author__ = 'Sebastian Amara'
 __email__ = 'sqamara@ucsd.edu'
 __version__ = '0.1.0'
 
-import seedmeopenmm import SeedMeStateDataReporter
+from seedmeopenmm.seedmeopenmm import SeedMeStateDataReporter
