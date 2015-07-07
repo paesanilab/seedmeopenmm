@@ -53,6 +53,7 @@ class SeedMeStateDataReporter(object):
         self._reportInterval = reportInterval
         
         self._obj = seedme.SeedMe()
+        self._obj.set_log_level('ERROR')
         result = self._obj.create_collection(title=collection)
         
         self._my_cid = self._obj.get_id(result)
