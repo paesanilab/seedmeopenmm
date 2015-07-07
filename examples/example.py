@@ -9,7 +9,7 @@ from simtk.openmm import app
 import simtk.openmm as mm
 from simtk import unit
 from sys import stdout
-from seedmestatedataeporter import SeedMeStateDataReporter
+from seedmeopenmm import SeedMeStateDataReporter
 
 
 
