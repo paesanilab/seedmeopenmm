@@ -23,6 +23,8 @@ Installation
 --------
 
 Instal OpenMM
+
+::
     conda install -c https://conda.binstar.org/omnia openmm 
 Perform the SeedMe Command Line setup 
     https://www.seedme.org/help/use/command-line/get-seedme-client
