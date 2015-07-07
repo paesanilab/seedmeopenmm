@@ -22,7 +22,7 @@ class SeedMeStateDataReporter(object):
     """
 
     def __init__(self, collection, reportInterval, step=False, time=False, potentialEnergy=False, kineticEnergy=False, totalEnergy=False, temperature=False, volume=False, density=False,
-                 progress=False, remainingTime=False, speed=False, separator=',', systemMass=None, totalSteps=None, iserror=False):
+                 progress=False, remainingTime=False, speed=False, separator=',', systemMass=None, totalSteps=None):
         """Create a SeedMeReporter.
 
         Parameters:
@@ -51,6 +51,8 @@ class SeedMeStateDataReporter(object):
            indicate 100% completion.
         """
         self._reportInterval = reportInterval
+        
+        self._iserror = False
         try:
             self._obj = seedme.SeedMe()
             self._obj.set_log_level('ERROR')
