@@ -23,15 +23,17 @@ Instalation
 --------
 
 Instal OpenMM::
-conda install -c https://conda.binstar.org/omnia openmm 
+    conda install -c https://conda.binstar.org/omnia openmm 
 
-Perform the SeedMe Command Line setup (https://www.seedme.org/help/use/command-line/get-seedme-client)
-and get your API key (https://www.seedme.org/help/use/get-apikey)
+Perform the SeedMe Command Line setup 
+https://www.seedme.org/help/use/command-line/get-seedme-client
+and get your API key 
+https://www.seedme.org/help/use/get-apikey
 
-Useage
+Usage
 --------
 
 The `SeedMeStateDataReporter` is used in the same way as the `StateDataReporter`.  Create a SeedMeStateDataReporter, then add it to the Simulation's list of reporters.  The set of data to write is configurable using boolean flags passed to the constructor.  By default the data is written in comma-separated-value (CSV) format, but you can specify a different separator to use.
 
 An example simulation can be found in the examples folder.
-Link to example output (https://www.seedme.org/node/40083)
+Link to example output https://www.seedme.org/node/40083
