@@ -22,7 +22,8 @@ The SeedMeStateDataReporter is an adaptation of the OpenMM StateDataReporter suc
 Instalation
 --------
 
-Instal OpenMM::
+Instal OpenMM
+::
     conda install -c https://conda.binstar.org/omnia openmm 
 
 Perform the SeedMe Command Line setup 
